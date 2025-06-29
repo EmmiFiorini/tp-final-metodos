@@ -216,7 +216,7 @@ grid
 
 Dif=0;
 for i=1:N
-    Dif = Dif + (feval('Funcion_3g', X(k)) - A_1*X(i)+B_1)^2;
+    Dif = Dif + (Y(i) - A_1*X(i)+B_1)^2;
 end
 ECM_a=1/N *sqrt(Dif);
 fprintf('El ECM de la aproximación lineal es: %.10f\n', ECM_a);
@@ -234,7 +234,7 @@ grid
 
 Difb=0;
 for i=1:N
-    Difb = Difb + (feval('Funcion_3g', X(k)) - exp(B_2)*exp(X(i)*A_2))^2;
+    Difb = Difb + (Y(i) - exp(B_2)*exp(X(i)*A_2))^2;
 end
 ECM_b=1/N *sqrt(Difb);
 fprintf('El ECM de la aproximación exponencial es: %.10f\n', ECM_b);
@@ -253,7 +253,7 @@ grid
 
 Difc=0;
 for i=1:N
-    Difc = Difc + (feval('Funcion_3g', X(k)) - Y_AL_c(X(i)))^2;
+    Difc = Difc + (Y(i) - Y_AL_c(X(i)))^2;
 end
 ECM_c=(1/N) *sqrt(Difc);
 fprintf('El ECM del Polinomio Interpolador de Lagrange es: %.10f\n', ECM_c);
@@ -271,7 +271,7 @@ grid
 
 Difc=0;
 for i=1:N
-    Difc = Difc + (feval('Funcion_3g', X(k)) - Y_AL_d(X(i)))^2;
+    Difc = Difc + (Y(i) - Y_AL_d(X(i)))^2;
 end
 ECM_d=(1/N) *sqrt(Difc);
 fprintf('El ECM del Polinomio Interpolador de Newton es: %.10f\n', ECM_d);
@@ -288,7 +288,7 @@ for k=1:N
     Y_AL_e(k,:) = Eval_Polinomio2(x(k,:),MC(k,:),X(k));
     plot(x(k,:),Y_AL_e(k,:),'b');
     y_interp = Eval_Polinomio2(X(k), MC(k,:), X(k)); 
-    Difc = Difc + (feval('Funcion_3g', X(k)) - y_interp).^2;
+    Difc = Difc + (Y(k) - y_interp).^2;
 end
 
 hold on;
@@ -303,9 +303,3 @@ grid
 ECM_e=(1/N) *sqrt(Difc);
 fprintf('El ECM de la interpolacion por Spline Cubicas es: %.10f\n', ECM_e);
 
-%digo cual es el minimo
-ECMs = [ECM_a, ECM_b, ECM_c, ECM_d, ECM_e];
-[minECM, idxMin] = min(ECMs);
-nombresECM = {'Aproximación Lineal', 'Aproximación Exponencial','Polinomio Interpolador de Lagrange', ...
-              'Polinomio Interpolador de Newton','Interpolación por Spline Cúbicas'};
-fprintf('El ECM mínimo es el del %s\n', nombresECM{idxMin});
