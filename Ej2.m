@@ -60,5 +60,28 @@ title('Posicion en q vs tiempo');
 grid;
 
 %% d
+a_x = zeros(size(v_x));
+a_q = zeros(size(v_q));
 
+for i = 2:N 
+    a_x(i) = (v_x(i+1) - v_x(i-1)) / (2*dt);
+    a_q(i) = (v_q(i+1) - v_q(i-1)) / (2*dt);
+end
 
+F2 = figure(2);
+set(F2, 'Position', [100, 100, 1200, 500],'Menubar','none',...
+   'NumberTitle','off','name', 'Ejercicio 2d TP#FINAL - Aceleraciones');
+
+subplot(1,2,1)
+plot(T, a_x, 'b')
+xlabel('t [s]');
+ylabel('a_M [m/s^2]');
+title('Aceleración de la cuña M');
+grid;
+
+subplot(1,2,2)
+plot(T, a_q, 'm')
+xlabel('t [s]');
+ylabel('a_m [m/s^2]');
+title('Aceleración del bloque m');
+grid;
