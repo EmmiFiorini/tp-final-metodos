@@ -32,14 +32,14 @@ X=[0;1.5;3;4.5;6;7.5;9;10.5;12;13.5;15;16.5;18;19.5];
 Y=[19.7;21.6;29.1;27.4;32.1;36;40.2;47.9;54.2;65.2;70.1;77.8;93.9;105.4];
 x_eval= linspace(0, 20, 1000);
 N=length(X);
-
+F1 = figure(1);
+set(F1, 'Position', [100, 100, 1200, 700],'Menubar','none',...
+   'NumberTitle','off','name', 'Ejercicio 3a-e TP#FINAL- Métodos Numéricos');
 %% Aproximacion Lineal a)
 
 [A_1,B_1,CC] = Ajuste_Lineal_MC(X,Y); 
 Y_AL_a = Funcion_1(x_eval,A_1,B_1);
-F1=figure(1);
-set(F1,'position',[140 20 1100 650],'Menubar','none',...
-        'NumberTitle','off','name', 'Ejercicio 3a TP#FINAL. Métodos Numéricos');
+subplot(2,3,1)
 plot(X,Y,'*r',x_eval,Y_AL_a, 'b') % Nube de puntos originales
 xlabel('D [mm]')
 ylabel('P(D) [mmHg]')
@@ -53,9 +53,7 @@ Y_log = log(Y);
 [A_2,B_2,CC] = Ajuste_Lineal_MC(X,Y_log);
 p0 = exp(B_2);
 Y_AL_b =  p0 * exp(A_2 * x_eval); % Recta de Ajuste evaluada en los puntos xk
-F2=figure(2);
-set(F2,'position',[140 20 1100 650],'Menubar','none',...
-        'NumberTitle','off','name', 'Ejercicio 3b TP#FINAL. Métodos Numéricos');
+subplot(2,3,2)
 plot(X,Y,'*r',x_eval,Y_AL_b, 'b') % Nube de puntos originales
 xlabel('D [mm]')
 ylabel('P(D) [mmHg]')
@@ -67,9 +65,7 @@ grid
 
 C_3 = Interp_Lagrange(X,Y');
 Y_AL_c = @(X) Eval_Polinomio(X,C_3);% Armado del polinomio
-F3=figure(3);
-set(F3,'position',[140 20 1100 650],'Menubar','none',...
-        'NumberTitle','off','name', 'Ejercicio 3c TP#FINAL. Métodos Numéricos');
+subplot(2,3,3)
 plot(X,Y,'*r',x_eval, Y_AL_c(x_eval),'b')
 xlabel('D [mm]')
 ylabel('P(D) [mmHg]')
@@ -81,9 +77,7 @@ grid
 
 C_4 = Interp_Newton(X,Y);
 Y_AL_d = @(X)Eval_Polinomio(X,C_4);% Armado del polinomio interpolador de Newton
-F4=figure(4);
-set(F4,'position',[140 20 1100 650],'Menubar','none',...
-        'NumberTitle','off','name', 'Ejercicio 3d TP#FINAL. Métodos Numéricos');
+subplot(2,3,4)
 plot(X,Y,'*r',x_eval, Y_AL_d(x_eval),'b')
 xlabel('D [mm]')
 ylabel('P(D) [mmHg]')
@@ -100,9 +94,7 @@ for k=1:N
     d = (X(k+1)-X(k))/L; % Armado de abscisas temporales para los 
     x(k,:) = X(k):d:X(k+1); % Polinomios spline cÃºbicos
 end    
-F5=figure(5);
-set(F5,'position',[140 20 1100 650],'Menubar','none',...
-        'NumberTitle','off','name', 'Ejercicio 3e TP#FINAL. MÃ©todos NumÃ©ricos');
+subplot(2,3,5)
 hold on
 plot(X,Y,'*r')
 xlabel('D [mm]')
@@ -123,10 +115,11 @@ hold off
 D_m = 12.5;
 Delta = 1e-13;
 Tol = 1e-13;
+F2 = figure(2);
+set(F2,'position',[140 20 1300 750],'Menubar','none',...
+        'NumberTitle','off','name', 'Ejercicio 3f TP#FINAL. Métodos Numéricos');
+subplot(2,3,1)
 [D,err,relerr,n] = Extrapolacion_Richardson_O2n(@(X) A_1*X+B_1,D_m,Delta,Tol);% referencia a esa función
-F6=figure(6);
-set(F6,'position',[140 20 1100 650],'Menubar','none',...
-        'NumberTitle','off','name', 'Ejercicio 3f (i) TP#FINAL. Métodos Numéricos');
 Elasticidad1 = D(end,end);
 tangente = Elasticidad1*(X - D_m) + A_1*D_m+B_1;
 plot(X,Y,'*r',x_eval,Y_AL_a, 'k',X, tangente, 'y--') % Nube de puntos originales
@@ -137,10 +130,8 @@ title('Ejercicio 3f (i)');
 grid 
 
  %ii.
+subplot(2,3,2)
 [D,err,relerr,n] = Extrapolacion_Richardson_O2n(@(X)  p0 * exp(A_2 * X),D_m,Delta,Tol);% referencia a esa funciÃ³n
-F7=figure(7);
-set(F7,'position',[140 20 1100 650],'Menubar','none',...
-        'NumberTitle','off','name', 'Ejercicio 3f (ii) TP#FINAL. Métodos Numéricos');
 Elasticidad_2 = D(end,end);
 tangente = Elasticidad_2*(X - D_m) +  p0 * exp(A_2 * D_m);
 plot(X,Y,'*r',x_eval,Y_AL_b, 'k', X, tangente, 'm--') % Nube de puntos originales
@@ -151,10 +142,8 @@ title('Ejercicio 3f (ii)');
 grid 
 
 %iii.
+subplot(2,3,3)
 [D,err,relerr,n] = Extrapolacion_Richardson_O2n(@(x) Y_AL_c(x),D_m,Delta,Tol);% referencia a esa funciÃ³n
-F8=figure(8);
-set(F8,'position',[140 20 1100 650],'Menubar','none',...
-        'NumberTitle','off','name', 'Ejercicio 3f (iii) TP#FINAL. Métodos Numéricos');
 Elasticidad_3 = D(end,end);
 tangente = Elasticidad_3*(X - D_m) + Y_AL_c(D_m);
 plot(X,Y,'*r',x_eval,Y_AL_c(x_eval), 'k',X, tangente, 'm--') % Nube de puntos originales
@@ -165,10 +154,8 @@ title('Ejercicio 3f (iii)');
 grid 
 
 %iv
+subplot(2,3,4)
 [D,err,relerr,n] = Extrapolacion_Richardson_O2n(@(x) Y_AL_d(x),D_m,Delta,Tol);% referencia a esa funciÃ³n
-F9=figure(9);
-set(F9,'position',[140 20 1100 650],'Menubar','none',...
-        'NumberTitle','off','name', 'Ejercicio 3f (iv) TP#FINAL. Métodos Numéricos');
 Elasticidad_4 = D(end,end);
 tangente = Elasticidad_4*(X - D_m) + Y_AL_d(D_m);
 plot(X,Y,'*r',x_eval,Y_AL_d(x_eval), 'k',X, tangente, 'm--') % Nube de puntos originales
@@ -179,6 +166,7 @@ title('Ejercicio 3f (iv)');
 grid
 
 %v
+subplot(2,3,5)
 Spline_9 = @(x) Eval_Polinomio2(x, MC(9,:), X(9)); %funcion
 [D, err, relerr, n] = Extrapolacion_Richardson_O2n(Spline_9, D_m, Delta, Tol);
 Elasticidad_5 = D(end,end);
@@ -190,10 +178,6 @@ for i = 1:length(x_eval)%evaluo la spline a mano punto por punto
     if idx == length(X), idx = idx - 1; end
     y_spline(i) = Eval_Polinomio2(x_eval(i), MC(idx,:), X(idx));
 end
-F10 = figure(10);
-set(F10,'position',[140 20 1100 650],'Menubar','none',...
-    'NumberTitle','off','name','Ejercicio 3f (v) TP#FINAL. Métodos Numéricos');
-
 plot(X, Y, '*r', x_eval, y_spline, 'k', X, tangente, 'm--')
 xlabel('D [mm]')
 ylabel('P(D) [mmHg]')
@@ -202,11 +186,12 @@ title('Ejercicio 3f (v)')
 grid
 
 %% g:
-P_v=Funcion_3g(x_eval);
+P_v = Funcion_3g(x_eval);
+F3 = figure(3);
+set(F3,'position',[100 100 1300 750],'Menubar','none',...
+    'NumberTitle','off','name','Ejercicio 3g TP#FINAL. Métodos Numéricos');
 %i:
-F11 = figure(11);
-set(F11,'position',[140 20 1100 650],'Menubar','none',...
-    'NumberTitle','off','name','Ejercicio 3g (i) TP#FINAL. Métodos Numéricos');
+subplot(2,3,1)
 plot(X,Y,'*r',x_eval,Y_AL_a, 'b',x_eval,P_v,'m') % Nube de puntos originales
 xlabel('D [mm]')
 ylabel('P(D) [mmHg]')
@@ -222,10 +207,8 @@ ECM_a=1/N *sqrt(Dif);
 fprintf('El ECM de la aproximación lineal es: %.10f\n', ECM_a);
 
 %ii:
-F12 = figure(12);
-set(F12,'position',[140 20 1100 650],'Menubar','none',...
-    'NumberTitle','off','name','Ejercicio 3g (ii) TP#FINAL. Métodos Numéricos');
-plot(X,Y,'*r',x_eval,Y_AL_b, 'b',x_eval,P_v,'m') % Nube de puntos originales
+subplot(2,3,2)
+plot(X,Y,'*r',x_eval,Y_AL_b,'b',x_eval,P_v,'m') % Nube de puntos originales
 xlabel('D [mm]')
 ylabel('P(D) [mmHg]')
 legend ('Pk', 'Aproximacion exponencial Pk','Funcion Verdadera')
@@ -241,9 +224,7 @@ fprintf('El ECM de la aproximación exponencial es: %.10f\n', ECM_b);
 
 
 %iii:
-F13 = figure(13);
-set(F13,'position',[140 20 1100 650],'Menubar','none',...
-    'NumberTitle','off','name','Ejercicio 3g (iii) TP#FINAL. Métodos Numéricos');
+subplot(2,3,3)
 plot(X,Y,'*r',x_eval,Y_AL_c(x_eval), 'b',x_eval,P_v,'m') % Nube de puntos originales
 xlabel('D [mm]')
 ylabel('P(D) [mmHg]')
@@ -259,9 +240,7 @@ ECM_c=(1/N) *sqrt(Difc);
 fprintf('El ECM del Polinomio Interpolador de Lagrange es: %.10f\n', ECM_c);
 
 %iv:
-F14 = figure(14);
-set(F14,'position',[140 20 1100 650],'Menubar','none',...
-    'NumberTitle','off','name','Ejercicio 3g (iv) TP#FINAL. Métodos Numéricos');
+subplot(2,3,4)
 plot(X,Y,'*r',x_eval,Y_AL_d(x_eval), 'b',x_eval,P_v,'m') % Nube de puntos originales
 xlabel('D [mm]')
 ylabel('P(D) [mmHg]')
@@ -276,10 +255,8 @@ end
 ECM_d=(1/N) *sqrt(Difc);
 fprintf('El ECM del Polinomio Interpolador de Newton es: %.10f\n', ECM_d);
 
-%v:
-F15 = figure(15);
-set(F15,'position',[140 20 1100 650],'Menubar','none',...
-    'NumberTitle','off','name','Ejercicio 3g (v) TP#FINAL. Métodos Numéricos');
+%v
+subplot(2,3,5)
 plot(X,Y,'*r') % Nube de puntos originales
 hold on;
 
