@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
-%%% Ejercicio Nro. 12 TP#2 Métodos Numéricos
+%%% Ejercicio Nro. 1 TP#FINAL Métodos Numéricos
 %%%
 %%% Resolución de Sistemas Ecuaciones Diferenciales de primer Orden:
 %%%         x1'=f1(t,x1,x2,...,xn)
@@ -25,10 +25,6 @@
 %%%      T: Vector Columna de tiempo
 %%%      X = Matriz resultado. Col#1: vector Solución x1; Col#2: Vector
 %%%      solución x2...;Col#n: vector solución xn
-%%%
-%%% Dr. Ing. Franco Pessana
-%%% FICEN
-%%% Universidad Favaloro
 %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

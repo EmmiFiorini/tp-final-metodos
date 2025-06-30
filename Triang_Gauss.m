@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
-%%% Ejercicio Nro. 7 TP#1 Métodos Numéricos
+%%% Ejercicio Nro. 1 TP#FINAL Métodos Numéricos
 %%%
 %%% Triangularización Gaussiana de Sistema de Ecuaciones Lineales
 %%% La Triangularización es superior (ceros por debajo de la 
@@ -17,9 +17,6 @@
 %%%
 %%%      X = Vector Solución de AX = B
 %%%
-%%% Dr. Ing. Franco Pessana
-%%% FICEN
-%%% Universidad Favaloro
 %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

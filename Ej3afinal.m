@@ -2,26 +2,6 @@
 %%%
 %%% Ejercicio Nro. 3 TP#FINAL Métodos Numéricos
 %%%
-%%% Aproximación Lineal por Mínimos Cuadrados:
-%%%
-%%%         y = Ax + B
-%%%
-%%% function [A,B,CC] = Ajuste_Lineal_MC(X,Y)
-%%%
-%%% Parámetros de Entrada:
-%%%       X = vector Nx1 con las abscisas de los pares de puntos
-%%%       Y = vector Nx1 con las ordenadas de los pares de puntos
-%%%
-%%% Parámetros de Salida:
-%%%
-%%%      A = pendiente del Ajuste Lineal
-%%%      B = Ordenada al origen
-%%%      CC = Coeficiente de Correlación
-%%%
-%%% Dr. Ing. Franco Pessana
-%%% FICEN
-%%% Universidad Favaloro
-%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear

@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% Ejercicio Nro. 1 TP#FINAL MÃ©todos NumÃ©ricos
+%%%
+%%% Juana Kallis, Emma fiorini y Agustina Vidaurreta
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+M = 100;
+m = 5;
+Ang = pi/6;
+g = 9.81;
+cte_1 = ((m+M)* g * sin(Ang))/(M+(m*sin(Ang)*sin(Ang)));
+cte_2 = -(m*g*sin(Ang)*cos(Ang))/(M+(m*sin(Ang)*sin(Ang)));
+
+%% c. 
+A = [cos(Ang) 1; (m+M) m*cos(Ang)];
+B = [g*sin(Ang) 0]';
+
+X = Triang_Gauss(A,B);
+
+fprintf('La segunda derivada de x, calculada por Triangulacion gaussiana es :%.5f\n',X(1));
+fprintf('La segunda derivada de q, calculada por Triangulacion gaussiana es :%.5f\n',X(2)); 
+
+fprintf('La segunda derivada de x, calculada analiticamente es :%.5f\n',cte_2);
+fprintf('La segunda derivada de q, calculada analiticamente es :%.5f\n',cte_1); 
+
+%% d.
+t0 = 0;
+tf = 4;
+dt = 0.001;
+N = (tf-t0)/ dt; % cantidad de puntos
+t_eval = linspace(t0, tf, N+1);% incluye t=0
+
+a_x = @(t) cte_2;
+a_q = @(t) cte_1; 
+
+
+v_q = zeros(size(t_eval));% inicializo las velocidades
+v_x = zeros(size(t_eval));
+
+
+for i = 2:2:length(t_eval)%calculo de integrales para puntos con índice par 
+    ti = t_eval(i);
+    Mi = i / 2;  % cantidad de subintervalos
+    v_q(i) = Regla_Simpson_Compuesta(a_q, t0, ti, Mi);
+    v_x(i) = Regla_Simpson_Compuesta(a_x, t0, ti, Mi);
+end
+
+
+for i = 3:2:length(t_eval)-1 %relleno los puntos impares con interpolación lineal
+    v_q(i) = (v_q(i-1) + v_q(i+1))/2;
+    v_x(i) = (v_x(i-1) + v_x(i+1))/2;
+end
+
+figure;
+plot(t_eval, v_q, 'b', 'LineWidth', 2); hold on;
+plot(t_eval, v_x, 'r', 'LineWidth', 2);
+xlabel('Tiempo [s]');
+ylabel('Velocidad [m/s]');
+legend('v_q(t)', 'v_x(t)');
+title('Velocidades de las masas M y m');
+grid on;
