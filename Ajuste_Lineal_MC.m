@@ -17,7 +17,6 @@
 %%%      A = pendiente del Ajuste Lineal
 %%%      B = Ordenada al origen
 %%%      CC = Coeficiente de Correlación
-%%
 %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

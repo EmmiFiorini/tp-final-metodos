@@ -1,9 +1,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
-%%% Ejercicio Nro. 2 TP#FINAL MÃ©todos NumÃ©ricos
+%%% Ejercicio Nro. 1 TP#FINAL Metodos Numericos
 %%%
 %%% Juana Kallis, Emma fiorini y Agustina Vidaurreta
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% c
 M = 100;
@@ -78,7 +79,6 @@ xlabel('t [s]');
 ylabel('a_M [m/s^2]');
 title('Aceleración de la cuña M');
 grid;
-
 subplot(1,2,2)
 plot(T, a_q, 'm')
 xlabel('t [s]');

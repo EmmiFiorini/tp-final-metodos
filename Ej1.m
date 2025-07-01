@@ -1,12 +1,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
-%%% Ejercicio Nro. 1 TP#FINAL MÃ©todos NumÃ©ricos
+%%% Ejercicio Nro. 1 TP#FINAL Metodos Numericos
 %%%
 %%% Juana Kallis, Emma fiorini y Agustina Vidaurreta
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 clear;
 clc;
-%%
 
 M = 100;
 m = 5;
@@ -23,7 +24,6 @@ X = Triang_Gauss(A,B);
 
 fprintf('La segunda derivada de x, calculada por Triangulacion gaussiana es :%.5f\n',X(1));
 fprintf('La segunda derivada de q, calculada por Triangulacion gaussiana es :%.5f\n',X(2)); 
-
 fprintf('La segunda derivada de x, calculada analiticamente es :%.5f\n',cte_2);
 fprintf('La segunda derivada de q, calculada analiticamente es :%.5f\n',cte_1); 
 
@@ -37,30 +37,26 @@ t_eval = linspace(t0, tf, M+1);% incluye t=0
 a_x = @(t) cte_2;
 a_q = @(t) cte_1; 
 
-
 v_q = zeros(size(t_eval));% inicializo las velocidades
 v_x = zeros(size(t_eval));
 
-
-for i = 2:2:length(t_eval) %integral para cada puntos, creo una nube de puntos
+for i = 2:2:length(t_eval) % integral para cada puntos, creo una nube de puntos
     ti = t_eval(i);
     Mi = i / 2;  % cantidad de subintervalos
     v_q(i) = Regla_Simpson_Compuesta(a_q, t0, ti, Mi);
     v_x(i) = Regla_Simpson_Compuesta(a_x, t0, ti, Mi);
 end
 
-%hago ajuste lineal
-[Aq, Bq, Cq] = Ajuste_Lineal_MC(t_eval', v_q');
+[Aq, Bq, Cq] = Ajuste_Lineal_MC(t_eval', v_q');% hago ajuste lineal
 [Ax, Bx, Cx] = Ajuste_Lineal_MC(t_eval', v_x');
 
-F1 = figure(1);
+F1 = figure(1);%grafico;
 set(F1, 'Position', [100, 100, 1200, 700],'Menubar','none',...
    'NumberTitle','off','name', 'Ejercicio 1 TP#FINAL- Métodos Numéricos');
 
-y_vq= @(t) Aq*t + Bq;   % funci�n de velocidad ajustada
+y_vq= @(t) Aq*t + Bq;% funci�n de velocidad ajustada
 y_vx= @(t) Ax*t + Bx;
 
-%grafico;
 subplot(2,2,1);
 hold on;
 plot(t_eval, y_vq(t_eval), 'b');
@@ -68,7 +64,6 @@ xlabel('t [s]');
 ylabel('v_q [m/s]');
 title('Velocidad en q vs tiempo');
 grid on;
-
 subplot(2,2,2);
 hold on;
 plot(t_eval, y_vx(t_eval), 'r');
@@ -76,7 +71,6 @@ xlabel('t [s]');
 ylabel('v_x [m/s]');
 title('Velocidad en x vs tiempo');
 grid on;
-
 %% e.
 
 x_M = zeros(size(t_eval));
@@ -89,22 +83,19 @@ for i = 2:2:length(t_eval) %integral para cada puntos, creo una nube de puntos
     x_m(i) = Regla_Simpson_Compuesta(y_vx, t0, ti, Mi);
 end
 
-
 Cm = polyfit(t_eval, x_m, 2);% llevo a un ajuste cuadratico
-y_xm = polyval(Cm, t_eval); %evaluo el polinomio
+y_xm = polyval(Cm, t_eval); % evaluo el polinomio
 
 CM = polyfit(t_eval, x_M, 2);% llevo a un ajuste cuadratico
-y_xM = polyval(CM, t_eval); %evaluo el polinomio
+y_xM = polyval(CM, t_eval); % evaluo el polinomio
 
-%grafico;
-subplot(2,2,3);
+subplot(2,2,3);%grafico;
 hold on;
 plot(t_eval, y_xM, 'b');
 xlabel('t [s]');
 ylabel('x_M [m]');
 title('Posicion q vs tiempo');
 grid on;
-
 subplot(2,2,4);
 hold on;
 plot(t_eval, y_xm, 'r');

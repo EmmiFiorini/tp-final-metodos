@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Ejercicio Nro. 7 TP#6 Métodos Numéricos
+%%% Ejercicio Nro. 1 TP#FINAL Métodos Numéricos
 %%%
 %%% Aproximación central de tercer orden (error cuarta potencia en h) de una
 %%% integral definida ente a y b
@@ -17,9 +17,6 @@
 %%%
 %%%      S = Integral definida aproximada
 %%%
-%%% Dr. Ing. Franco Pessana
-%%% FICEN
-%%% Universidad Favaloro
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function S = Regla_Simpson_Compuesta(f,a,b,M)

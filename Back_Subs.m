@@ -12,10 +12,7 @@
 %%%
 %%% Parámetro de Salida
 %%%
-%%%      X = Vector Solución de AX = B
-%%%
-%%% Dr. Ing. Franco Pessana
-%%% 
+%%%      X = Vector Solución de AX = B 
 %%% FICEN
 %%% Universidad Favaloro
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

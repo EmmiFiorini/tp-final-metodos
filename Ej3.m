@@ -1,9 +1,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
-%%% Ejercicio Nro. 3 TP#FINAL MÃ©todos NumÃ©ricos
+%%% Ejercicio Nro. 1 TP#FINAL Metodos Numericos
 %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%% Juana Kallis, Emma fiorini y Agustina Vidaurreta
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clear
 clc
 
@@ -11,7 +12,7 @@ clc
 X=[0;1.5;3;4.5;6;7.5;9;10.5;12;13.5;15;16.5;18;19.5];
 Y=[19.7;21.6;29.1;27.4;32.1;36;40.2;47.9;54.2;65.2;70.1;77.8;93.9;105.4];
 x_eval= linspace(0, 20, 1000);
-N=length(X);
+N = length(X);
 F1 = figure(1);
 set(F1, 'Position', [100, 100, 1200, 700],'Menubar','none',...
    'NumberTitle','off','name', 'Ejercicio 3a-e TP#FINAL- Métodos Numéricos');
@@ -260,9 +261,8 @@ grid
 ECM_e=(1/N) *sqrt(Difc);
 fprintf('El ECM de la interpolacion por Spline Cubicas es: %.10f\n', ECM_e);
 
-%digo cual es el minimo
 ECMs = [ECM_a, ECM_b, ECM_c, ECM_d, ECM_e];
-[minECM, idxMin] = min(ECMs);
+[minECM, idxMin] = min(ECMs);%digo cual es el minimo
 nombresECM = {'Aproximación Lineal', 'Aproximación Exponencial','Polinomio Interpolador de Lagrange', ...
               'Polinomio Interpolador de Newton','Interpolación por Spline Cúbicas'};
 fprintf('El ECM mínimo es el del %s\n', nombresECM{idxMin});

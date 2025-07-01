@@ -15,10 +15,6 @@
 %%%
 %%% Se evalúa en en entorno X al polinomio:
 %%%             S(x)=C3*(x-xk0)^3+C2*(x-x0)^2+s1*(x-x0)+C0 
-%%% 
-%%% Dr. Ing. Franco Pessana1
-%%% FICEN
-%%% Universidad Favaloro
 %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

@@ -18,10 +18,6 @@
 %%% Se trabaja con Spline cúbica natural, es decir, con
 %%% la condición S''(x0=a)=S''(xN=b)=0
 %%%
-%%% Dr. Ing. Franco Martin Pessana
-%%% Métodos Numéricos
-%%% Universidad Favaloro
-%%% Facultad de Ingeniería y Ciencias Exactas y Naturales
 %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

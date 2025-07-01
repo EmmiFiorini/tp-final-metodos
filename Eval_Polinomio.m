@@ -11,9 +11,6 @@
 %%%
 %%%         Poli_Eval: Polinomio evaluado en el entorno de X
 %%%
-%%% Dr. Ing. Franco Pessana
-%%% FICEN
-%%% Universidad Favaloro
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function Poli_Eval = Eval_Polinomio(X,C)

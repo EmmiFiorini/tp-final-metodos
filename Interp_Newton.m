@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Ejercicio Nro. 7 TP#5 Métodos Numéricos
+%%% Ejercicio Nro. 3d TP#FINAL Métodos Numéricos
 %%%
 %%% Interpolación Polinomial de Newton
 %%%
@@ -19,9 +19,6 @@
 %%%      de izquierda a derecha
 %%%      D = matriz que contiene la Tabla de las Diferencias Divididas
 %%%
-%%% Dr. Ing. Franco Pessana
-%%% FICEN
-%%% Universidad Favaloro
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function [C_N,D] = Interp_Newton(X,Y)
