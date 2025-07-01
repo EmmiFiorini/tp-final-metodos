@@ -4,6 +4,9 @@
 %%%
 %%% Juana Kallis, Emma fiorini y Agustina Vidaurreta
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+clear;
+clc;
+%%
 
 M = 100;
 m = 5;
@@ -54,21 +57,58 @@ F1 = figure(1);
 set(F1, 'Position', [100, 100, 1200, 700],'Menubar','none',...
    'NumberTitle','off','name', 'Ejercicio 1 TP#FINAL- Métodos Numéricos');
 
+y_vq= @(t) Aq*t + Bq;   % funci�n de velocidad ajustada
+y_vx= @(t) Ax*t + Bx;
+
 %grafico;
-subplot(1,2,1);
+subplot(2,2,1);
 hold on;
-y_vq = Aq * t_eval + Bq;
-plot(t_eval, y_vq, 'b');
+plot(t_eval, y_vq(t_eval), 'b');
 xlabel('t [s]');
 ylabel('v_q [m/s]');
 title('Velocidad en q vs tiempo');
 grid on;
 
-subplot(1,2,2);
+subplot(2,2,2);
 hold on;
-y_vx=Ax*t_eval + Bx;
-plot(t_eval, y_vx, 'r');
+plot(t_eval, y_vx(t_eval), 'r');
 xlabel('t [s]');
 ylabel('v_x [m/s]');
 title('Velocidad en x vs tiempo');
+grid on;
+
+%% e.
+
+x_M = zeros(size(t_eval));
+x_m = zeros(size(t_eval));
+
+for i = 2:2:length(t_eval) %integral para cada puntos, creo una nube de puntos
+    ti = t_eval(i);
+    Mi = i / 2;  % cantidad de subintervalos
+    x_M(i) = Regla_Simpson_Compuesta(y_vq, t0, ti, Mi);
+    x_m(i) = Regla_Simpson_Compuesta(y_vx, t0, ti, Mi);
+end
+
+
+Cm = polyfit(t_eval, x_m, 2);% llevo a un ajuste cuadratico
+y_xm = polyval(Cm, t_eval); %evaluo el polinomio
+
+CM = polyfit(t_eval, x_M, 2);% llevo a un ajuste cuadratico
+y_xM = polyval(CM, t_eval); %evaluo el polinomio
+
+%grafico;
+subplot(2,2,3);
+hold on;
+plot(t_eval, y_xM, 'b');
+xlabel('t [s]');
+ylabel('x_M [m]');
+title('Posicion q vs tiempo');
+grid on;
+
+subplot(2,2,4);
+hold on;
+plot(t_eval, y_xm, 'r');
+xlabel('t [s]');
+ylabel('x_m [m]');
+title('Posicion x vs tiempo');
 grid on;
