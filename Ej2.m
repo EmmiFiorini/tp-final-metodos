@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
-%%% Ejercicio Nro. 1 TP#FINAL Metodos Numericos
+%%% Ejercicio Nro. 2 TP#FINAL Metodos Numericos
 %%%
 %%% Juana Kallis, Emma fiorini y Agustina Vidaurreta
 %%%
